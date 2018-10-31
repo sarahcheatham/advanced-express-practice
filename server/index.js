@@ -23,20 +23,19 @@ app.get('/comments', (req, res, next)=>{
 
 //get each comment by id 
 app.get('/comments/:id', (req, res, next)=>{
-    comments.find((id)=>{
+    const comment = comments.find((id)=>{
         return id._id == req.params.id
     })
-    return res.json(comments[req.params.id - 1])
+    return res.json(comment)
 });
 
 //get comments array and add another comment to it 
-app.post('/comments/:id', (req, res, next)=>{
-    comments.push(req.body);
+app.post('/comments', (req, res, next)=>{
+    const newComment = req.body;
+    comments.push(newComment);
     commentCount++;
-    comments.map((item, index)=>{
-        item._id = index + 1;
-    })
-    return res.json(comments[req.params.id - 1])
+    newComment._id = commentCount;
+    return res.json(newComment)
 });
 
 //get the products array
@@ -46,20 +45,19 @@ app.get('/products', (req, res, next)=>{
 
 //get each product by id 
 app.get('/products/:id', (req, res, next)=>{
-    products.find((id)=>{
+    const product = products.find((id)=>{
         return id._id == req.params.id
     })
-    return res.json(products[req.params.id - 1])
+    return res.json(product)
 });
 
 //get products array and add another product to it 
-app.post('/products/:id', (req, res, next)=>{
-    products.push(req.body);
+app.post('/products', (req, res, next)=>{
+    const newProduct = req.body;
+    products.push(newProduct);
     productsCount++;
-    products.map((item, index)=>{
-        return item._id == index + 1 ? item._id = index + 1 : item._id = productsCount;
-    })
-    return res.json(products[req.params.id - 1])
+    newProduct._id = productsCount;
+    return res.json(newProduct)
 });
 
 //get the vehicles array
@@ -69,20 +67,19 @@ app.get('/vehicles', (req, res, next)=>{
 
 //get each vehicle by id 
 app.get('/vehicles/:id', (req, res, next)=>{
-    vehicles.find((id)=>{
+    const vehicle = vehicles.find((id)=>{
         return id._id == req.params.id
     })
-    return res.json(vehicles[req.params.id - 1])
+    return res.json(vehicle)
 });
 
 //get vehicles array and add another vehicle to it 
-app.post('/vehicles/:id', (req, res, next)=>{
-    vehicles.push(req.body);
+app.post('/vehicles', (req, res, next)=>{
+    const newVehicle = req.body;
+    vehicles.push(newVehicle);
     vehiclesCount++;
-    vehicles.map((item, index)=>{
-        return item._id == index + 1 ? item._id = index + 1 : item._id = vehiclesCount;
-    })
-    return res.json(vehicles[req.params.id - 1])
+    newVehicle._id = vehiclesCount;
+    return res.json(newVehicle)
 });
 
 //get the contacts array
@@ -92,20 +89,19 @@ app.get('/contacts', (req, res, next)=>{
 
 //get each contact by id 
 app.get('/contacts/:id', (req, res, next)=>{
-    contacts.find((id)=>{
+    const contact = contacts.find((id)=>{
         return id._id == req.params.id
     })
-    return res.json(contacts[req.params.id - 1])
+    return res.json(contact)
 })
 
 //get contacts array and add another contact to it 
-app.post('/contacts/:id', (req, res, next)=>{
-    contacts.push(req.body);
+app.post('/contacts', (req, res, next)=>{
+    const newContact = req.body;
+    contacts.push(newContact);
     contactsCount++;
-    contacts.map((item, index)=>{
-        return item._id == index + 1 ? item._id = index + 1 : item._id = contactsCount;
-    })
-    return res.json(contacts[req.params.id - 1])
+    newContact._id = contactsCount;
+    return res.json(newContact)
 });
 
 
