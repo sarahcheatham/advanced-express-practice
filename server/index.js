@@ -5,8 +5,11 @@ const products = require("./products");
 const vehicles = require("./vehicles");
 const contacts = require("./contacts");
 
-const ContactRoutes = require("./routes/ContactRoutes");
-const CommentRoutes = require("./routes/CommentRoutes");
+let CommentRoutes = require("./routes/CommentRoutes");
+let ContactRoutes = require("./routes/ContactRoutes");
+let ProductRoutes = require("./routes/ProductRoutes");
+let VehicleRoutes = require("./routes/VehicleRoutes");
+
 
 let app = express();
 
@@ -16,8 +19,10 @@ const bodyParser = require("body-parser");
 const port = process.env.PORT || 3001;
 
 app.use(bodyParser.json());
-app.use(ContactRoutes);
 app.use(CommentRoutes);
+app.use(ContactRoutes);
+app.use(ProductRoutes);
+app.use(VehicleRoutes);
 
 
 // let commentCount = comments.length;
@@ -48,9 +53,9 @@ let vehiclesCount = vehicles.length;
 // });
 
 //get the products array
-app.get('/products', (req, res, next)=>{
-    return res.json(products)
-});
+// app.get('/products', (req, res, next)=>{
+//     return res.json(products)
+// });
 
 //get each product by id 
 app.get('/products/:id', (req, res, next)=>{

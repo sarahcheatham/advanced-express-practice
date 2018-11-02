@@ -1,9 +1,8 @@
 let express =  require("express");
 
-let router = express.Router();
+const router = express.Router();
 
 let {list,show,create,update,remove} = require( "../controllers/ContactController");
-
 
 router.get("/contacts", list);
 router.get("/contacts/:id", show);

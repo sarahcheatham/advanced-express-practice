@@ -5,13 +5,13 @@ module.exports.list =  (req, res, next)=>{
     return res.json(contacts) 
 }
 module.exports.show =  (req, res, next)=>{
-    const contact = contacts.find((id)=>{
+    let contact = contacts.find((id)=>{
         return id._id == req.params.id
     })
     return res.json(contact)
 }
 module.exports.create =  (req, res, next)=>{
-    const newContact = req.body;
+    let newContact = req.body;
     contacts.push(newContact);
     contactsCount++;
     newContact._id = contactsCount;
