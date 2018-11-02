@@ -1,42 +1,51 @@
-const express = require("express");
+let express = require("express");
 
 const comments = require("./comments");
 const products = require("./products");
 const vehicles = require("./vehicles");
 const contacts = require("./contacts");
 
-const app = express();
+const ContactRoutes = require("./routes/ContactRoutes");
+const CommentRoutes = require("./routes/CommentRoutes");
+
+let app = express();
 
 const bodyParser = require("body-parser");
 
-app.use(bodyParser.json());
+//used in the listen method
+const port = process.env.PORT || 3001;
 
-let commentCount = comments.length;
+app.use(bodyParser.json());
+app.use(ContactRoutes);
+app.use(CommentRoutes);
+
+
+// let commentCount = comments.length;
 let productsCount = products.length;
 let vehiclesCount = vehicles.length;
-let contactsCount = contacts.length;
+
 
 //get the comments array
-app.get('/comments', (req, res, next)=>{
-    return res.json(comments)
-});
+// app.get('/comments', (req, res, next)=>{
+//     return res.json(comments)
+// });
 
 //get each comment by id 
-app.get('/comments/:id', (req, res, next)=>{
-    const comment = comments.find((id)=>{
-        return id._id == req.params.id
-    })
-    return res.json(comment)
-});
+// app.get('/comments/:id', (req, res, next)=>{
+//     const comment = comments.find((id)=>{
+//         return id._id == req.params.id
+//     })
+//     return res.json(comment)
+// });
 
 //get comments array and add another comment to it 
-app.post('/comments', (req, res, next)=>{
-    const newComment = req.body;
-    comments.push(newComment);
-    commentCount++;
-    newComment._id = commentCount;
-    return res.json(newComment)
-});
+// app.post('/comments', (req, res, next)=>{
+//     const newComment = req.body;
+//     comments.push(newComment);
+//     commentCount++;
+//     newComment._id = commentCount;
+//     return res.json(newComment)
+// });
 
 //get the products array
 app.get('/products', (req, res, next)=>{
@@ -82,32 +91,8 @@ app.post('/vehicles', (req, res, next)=>{
     return res.json(newVehicle)
 });
 
-//get the contacts array
-app.get('/contacts', (req, res, next)=>{
-    return res.json(contacts)
-});
 
-//get each contact by id 
-app.get('/contacts/:id', (req, res, next)=>{
-    const contact = contacts.find((id)=>{
-        return id._id == req.params.id
-    })
-    return res.json(contact)
-})
-
-//get contacts array and add another contact to it 
-app.post('/contacts', (req, res, next)=>{
-    const newContact = req.body;
-    contacts.push(newContact);
-    contactsCount++;
-    newContact._id = contactsCount;
-    return res.json(newContact)
-});
-
-
-app.listen(3001, (err) => {
-    if (err) {
-      return console.log("Error", err);
-    }
-    console.log("Web server is on");
+//changed original listen method to this
+app.listen(port, ()=>{
+    console.log(`Listening on port: ${port}`);
 });
