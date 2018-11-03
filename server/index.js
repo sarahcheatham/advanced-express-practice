@@ -23,7 +23,6 @@ app.use(ContactRoutes);
 app.use(ProductRoutes);
 app.use(VehicleRoutes);
 
-
 //changed original listen method to this
 app.listen(port, ()=>{
     console.log(`Listening on port: ${port}`);
