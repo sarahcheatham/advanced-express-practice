@@ -1,5 +1,9 @@
 let express = require("express");
 
+let mongoose = require("mongoose");
+mongoose.Promise = global.Promise;
+mongoose.connect("mongodb://scheatham:124Olive@ds153093.mlab.com:53093/express-practice")
+
 const comments = require("./comments");
 const products = require("./products");
 const vehicles = require("./vehicles");
