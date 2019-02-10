@@ -4,10 +4,10 @@ let mongoose = require("mongoose");
 mongoose.Promise = global.Promise;
 mongoose.connect("mongodb://scheatham:124Olive@ds153093.mlab.com:53093/express-practice")
 
-const comments = require("./comments");
-const products = require("./products");
-const vehicles = require("./vehicles");
-const contacts = require("./contacts");
+// const comments = require("./comments");
+// const products = require("./products");
+// const vehicles = require("./vehicles");
+// const contacts = require("./contacts");
 
 let CommentRoutes = require("./routes/CommentRoutes");
 let ContactRoutes = require("./routes/ContactRoutes");
